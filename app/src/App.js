@@ -1,5 +1,5 @@
 import './App.css';
-import { ThemeProvider, Grid, Container, Paper, Typography, Link } from '@material-ui/core';
+import { ThemeProvider, Grid, Container, Paper, Typography, CircularProgress } from '@material-ui/core';
 import { ArrowForward } from '@material-ui/icons';
 import { theme } from './theme';
 import Prototype from './components/Prototype/Prototype';
@@ -11,14 +11,18 @@ import {useState, useEffect} from 'react'
 function App() {
     const [groupBy, setGroupBy] = useState(1);
     const [items, setItems] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch("https://api.example.com/items?groupBy="+groupBy)
+        fetch(process.env.REACT_APP_API_URL+"?groupBy="+groupBy)
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
-                    setItems(result);
+                    if (result.status) {
+                        setError(result.message);
+                    } else {
+                        setItems(Object.values(result));
+                    }
                 },
                 (error) => {
                     alert(error)
@@ -43,14 +47,16 @@ function App() {
                           <Filter onChange={(id) => setGroupBy(id)} options={[
                               {
                                   id: 1,
-                                  label: 'По отрасли'
+                                  label: 'По специальности'
                               },
                               {
                                   id: 2,
-                                  label: 'По специальности'
+                                  label: 'По отрасли'
                               }
                           ]}/>
-                        <Table />
+                          {items.length ? <Table rows={items} /> : (
+                              error ? <Typography variant='h6'>{error}</Typography> : <CircularProgress />
+                          )}
                       </Paper>
                   </Grid>
                   <Grid container item xs={4} className="col-right">

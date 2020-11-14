@@ -91,6 +91,7 @@ export const theme = createMuiTheme({
         },
         MuiTableCell: {
             head: {
+                whiteSpace: 'nowrap',
                 backgroundColor: '#F3F6F9',
                 color: '#808182',
                 fontSize: '14px',
@@ -100,7 +101,7 @@ export const theme = createMuiTheme({
                 '& > span': {
                     display: 'block',
                     fontSize: '12px',
-                    fontWeight: '400',
+                    fontWeight: '400'
                 },
                 border: 'none',
             },
@@ -112,6 +113,7 @@ export const theme = createMuiTheme({
                 '& > span': {
                     display: 'block',
                     fontSize: '12px',
+                    height: '16px',
                 },
                 '& > svg': {
                     marginRight: '16px',

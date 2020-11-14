@@ -29,33 +29,16 @@ const NoBorderTableCell = withStyles((theme) => ({
     },
 }))(TableCell);
 
-function createData(id, name, calories, fat, carbs, protein, items = []) {
-    return { id, name, calories, fat, carbs, protein, items };
-}
-
-const rows = [
-    createData(1, 'Frozen yoghurt', 159, 6.0, 24, 4.0, [
-        createData(2, 'Gingerbread', 356, 16.0, 49, 3.9),
-        createData(3, 'Gingerbread', 356, 16.0, 49, 3.9),
-        createData(4, 'Gingerbread', 356, 16.0, 49, 3.9),
-    ]),
-    createData(5, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData(6, 'Eclair', 262, 16.0, 24, 6.0, [
-        createData(7, 'Cupcake', 305, 3.7, 67, 4.3),
-        createData(8, 'Gingerbread', 356, 16.0, 49, 3.9),
-    ]),
-];
-
 const useStyles = makeStyles({
     table: {
         width: '100%'
     },
 });
 
-export default function CustomizedTable({}) {
+export default function CustomizedTable({rows}) {
     const classes = useStyles();
     const [open, setOpen] = useState([]);
-
+console.log(rows);
     const toggleOpen = (id) => {
         return () => {
             if (open.indexOf(id) === -1) {
@@ -80,33 +63,31 @@ export default function CustomizedTable({}) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <React.Fragment key={row.id}>
-                        <TableRow onClick={row.items.length ? toggleOpen(row.id) : () => {}}>
+                    {rows.map((rowArr) => {
+                        let isOpened = rowArr.length > 0 && open.indexOf(rowArr[0].okpdtr) !== -1;
+                        return rowArr.map((row, key) => key > 0 && !isOpened ? null : <TableRow key={key === 0 ? row.okpdtr : row.okpdtr + row.okved} onClick={key === 0 ? toggleOpen(row.okpdtr) : () => {}}>
                             <NoBorderTableCell component="th" scope="row">
-                                {open.indexOf(row.id) !== -1 ? <KeyboardArrowDown/> : <KeyboardArrowRight/>}
+                                {key === 0 ? (isOpened ? <KeyboardArrowDown/> : <KeyboardArrowRight/>) : null}
                             </NoBorderTableCell>
-                            <TableCell component="th" scope="row">
-                                <b>{row.name}</b>
+                            <TableCell style={{width: '390px'}} component="th" scope="row">
+                                {key > 0 ? <KeyboardArrowRight/> : null}
+                                <b>{row.title}</b>
                             </TableCell>
-                            <TableCell align="right"><b>{row.calories}</b></TableCell>
-                            <StyledTableCell align="right">{row.fat}<span>+10</span></StyledTableCell>
-                            <StyledTableCell align="right">{row.carbs}<span>+10</span></StyledTableCell>
-                            <StyledTableCell align="right">{row.protein}<span>+10</span></StyledTableCell>
-                        </TableRow>
-                        {open.indexOf(row.id) !== -1 ? row.items.map((row) => <TableRow key={row.id} onClick={toggleOpen(row.id)}>
-                            <NoBorderTableCell component="th" scope="row"/>
-                            <TableCell component="th" scope="row">
-                                <KeyboardArrowRight/>
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right"><b>{row.calories}</b></TableCell>
-                            <StyledTableCell align="right">{row.fat}<span>+10</span></StyledTableCell>
-                            <StyledTableCell align="right">{row.carbs}<span>+10</span></StyledTableCell>
-                            <StyledTableCell align="right">{row.protein}<span>+10</span></StyledTableCell>
-                        </TableRow>) : null}
-                    </React.Fragment>
-                    ))}
+                            <TableCell align="right"><b>{row.counts}</b><span/></TableCell>
+                            <StyledTableCell align="right">
+                                {row.month_3_value || '-'}
+                                {row.month_3_value ? <span>{((row.month_3_value - row.counts) > 0 ? '+' : '')+(row.month_3_value - row.counts)}</span> : <span/>}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                                {row.month_6_value || '-'}
+                                {row.month_6_value ? <span>{((row.month_6_value - row.counts > 0) ? '+' : '')+(row.month_6_value - row.counts)}</span> : <span/>}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                                {row.month_12_value || '-'}
+                                {row.month_12_value ? <span>{((row.month_12_value - row.counts > 0) ? '+' : '')+(row.month_12_value - row.counts)}</span> : <span/>}
+                            </StyledTableCell>
+                        </TableRow>)
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
