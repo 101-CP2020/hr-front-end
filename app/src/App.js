@@ -14,7 +14,7 @@ function App() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL+"?groupBy="+groupBy)
+        fetch(process.env.REACT_APP_API_URL+"/vacancies?groupBy="+groupBy)
             .then(res => res.json())
             .then(
                 (result) => {
