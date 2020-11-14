@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <img src="/prototype.jpg" className="App-logo" alt="logo" />
+        <img width="100%" src="/prototype.jpg" />
     </div>
   );
 }
