@@ -5,6 +5,7 @@ import { theme } from './theme';
 import Prototype from './components/Prototype/Prototype';
 import Table from './components/Table/Table';
 import Filter from './components/Filter/Filter';
+import HeadRow from './components/HeadRow/HeadRow';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <ThemeProvider theme={theme}>
           <Prototype type="header"/>
           <Container>
+              <HeadRow/>
               <Grid container>
                   <Grid container item xs={8} className="col-left">
                       <Prototype type="statystic"/>

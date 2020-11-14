@@ -90,9 +90,9 @@ export default function CustomizedTable({}) {
                                 <b>{row.name}</b>
                             </TableCell>
                             <TableCell align="right"><b>{row.calories}</b></TableCell>
-                            <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                            <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                            <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                            <StyledTableCell align="right">{row.fat}<span>+10</span></StyledTableCell>
+                            <StyledTableCell align="right">{row.carbs}<span>+10</span></StyledTableCell>
+                            <StyledTableCell align="right">{row.protein}<span>+10</span></StyledTableCell>
                         </TableRow>
                         {open.indexOf(row.id) !== -1 ? row.items.map((row) => <TableRow key={row.id} onClick={toggleOpen(row.id)}>
                             <NoBorderTableCell component="th" scope="row"/>

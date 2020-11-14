@@ -26,6 +26,11 @@ export const theme = createMuiTheme({
     palette,
     typography: {
         fontFamily: 'Roboto',
+        h1: {
+            fontSize: '24px',
+            lineHeight: '24px',
+            fontWeight: '700'
+        },
         h6: {
             fontSize: '16px',
             lineHeight: '24px',
@@ -77,6 +82,11 @@ export const theme = createMuiTheme({
             'elevation1': {
                 borderRadius: '4px',
                 boxShadow: 'none'
+            }
+        },
+        MuiTableRow: {
+            root: {
+                cursor: 'pointer'
             }
         },
         MuiTableCell: {
