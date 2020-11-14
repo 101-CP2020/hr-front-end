@@ -12,5 +12,5 @@ export default function Prototype({type}) {
         graf1,
         graf2
     };
-    return <img style={{marginBottom: '24px'}} width='100%' src={images[type]}/>
+    return <div style={{marginBottom: '24px'}}><img width='100%' src={images[type]}/></div>
 }

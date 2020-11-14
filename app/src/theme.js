@@ -30,6 +30,11 @@ export const theme = createMuiTheme({
             fontSize: '16px',
             lineHeight: '24px',
             fontWeight: '500'
+        },
+        subtitle1: {
+            fontSize: '14px',
+            fontWeight: '700',
+            color: '#4f4f4f'
         }
     },
     overrides: {
@@ -44,12 +49,66 @@ export const theme = createMuiTheme({
                 },
             },
             maxWidthLg: {
-                maxWidth: '1440px!important',
+                '@media (min-width: 1484px)': {
+                    maxWidth: '1440px',
+                }
+            }
+        },
+        MuiGrid: {
+            container: {
+                alignItems: 'flex-start'
+            }
+        },
+        MuiLink: {},
+
+        MuiButton: {
+            'outlined': {
+                borderColor: 'rgba(0,0,0,.2)',
+                borderRadius: '4px',
+                padding: '6px 16px',
+                color: '#0470DC',
+                fontSize: '14px',
+                lineHeight: '16px',
+                fontWeight: '500'
             }
         },
 
-        MuiLink: {},
-
-        MuiButton: {},
+        MuiPaper: {
+            'elevation1': {
+                borderRadius: '4px',
+                boxShadow: 'none'
+            }
+        },
+        MuiTableCell: {
+            head: {
+                backgroundColor: '#F3F6F9',
+                color: '#808182',
+                fontSize: '14px',
+                lineHeight: '20px',
+                fontWeight: '500',
+                padding: '8px',
+                '& > span': {
+                    display: 'block',
+                    fontSize: '12px',
+                    fontWeight: '400',
+                },
+                border: 'none',
+            },
+            body: {
+                padding: '12px',
+                border: 'none',
+                fontSize: '16px',
+                lineHeight: '24px',
+                '& > span': {
+                    display: 'block',
+                    fontSize: '12px',
+                },
+                '& > svg': {
+                    marginRight: '16px',
+                    verticalAlign: 'middle'
+                },
+                borderBottom: '1px solid #f2f2f2'
+            }
+        }
     },
 });
