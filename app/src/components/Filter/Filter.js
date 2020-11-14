@@ -1,20 +1,18 @@
 import React from 'react'
 
-import {ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Button, Typography} from '@material-ui/core';
+import {ClickAwayListener, Grow, Paper, Popper, MenuList, MenuItem, Button, Typography} from '@material-ui/core';
 
 import { KeyboardArrowDown } from '@material-ui/icons';
 
-export default function Filter({options = []}) {
+export default function Filter({options = [], onChange = () => {}}) {
     const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const anchorRef = React.useRef();
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
         setOpen(false);
-        if (options[index].onClick) {
-            options[index].onClick();
-        }
+        onChange(options[index].id);
     };
 
     const handleToggle = () => {

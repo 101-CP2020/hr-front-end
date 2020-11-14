@@ -44,6 +44,15 @@ img {
   margin-left: 6px;
 }
 
+.subtitle:hover {
+  color: #0470DC;
+  cursor: pointer;
+}
+
+.subtitle:hover svg {
+  fill: #0470DC;
+}
+
 .head-row, .head-row_btns {
   display: flex;
   align-items: center;
